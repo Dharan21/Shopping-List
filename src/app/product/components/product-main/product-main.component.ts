@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductApiService } from 'src/app/shared/services/product-api-call.service';
 import { Subscription } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -8,7 +8,7 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
   selector: 'app-product-main',
   templateUrl: 'product-main.component.html'
 })
-export class ProductMainComponent implements OnInit {
+export class ProductMainComponent implements OnInit, OnDestroy {
   productsSub: Subscription;
   constructor(
     private api: ProductApiService,
@@ -27,6 +27,12 @@ export class ProductMainComponent implements OnInit {
           this.spinner.hide();
         }
       );
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.productsSub) {
+      this.productsSub.unsubscribe();
     }
   }
 }

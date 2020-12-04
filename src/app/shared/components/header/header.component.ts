@@ -8,25 +8,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
   apiSub: Subscription;
 
-  constructor(
-    private api: ProductApiService,
-    private spinner: NgxSpinnerService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {}
-
-  onFetchData() {
-    this.spinner.show();
-    this.apiSub = this.api.fetchProducts().subscribe(() => {
-      this.spinner.hide();
-    });
-  }
-
-  ngOnDestroy() {
-    this.apiSub.unsubscribe();
-  }
 }
