@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductApiService } from '../../services/product-api-call.service';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NgxSpinnerService } from 'ngx-spinner';
+
+import * as fromConstants from './../../utils/constants';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class HeaderComponent implements OnInit {
 
   apiSub: Subscription;
+  navMenu = fromConstants.NavMenu;
 
   constructor() { }
 
