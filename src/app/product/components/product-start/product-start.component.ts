@@ -1,3 +1,4 @@
+import { AuthServiceForUnitTesting } from './auth-service-for-unit-testing.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductStartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authTestService: AuthServiceForUnitTesting) { }
 
   ngOnInit(): void {
+  }
+
+  isLoggedIn() {
+    return this.authTestService.isAuthenticated();
   }
 
 }
