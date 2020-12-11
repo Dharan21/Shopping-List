@@ -1,7 +1,7 @@
 import { Product } from './../../../shared/models/product.model';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ProductItemComponent } from './product-item.component';
-import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.services';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 
 // for Assignment 3, Date: 12/07/2020
 describe('ProductItemComponent', () => {

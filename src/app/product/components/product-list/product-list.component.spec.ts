@@ -2,7 +2,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
 
 import { ProductListComponent } from './product-list.component';
-import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.services';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { Product } from 'src/app/shared/models/product.model';
 
 // for Assignment 3, Date: 12/07/2020

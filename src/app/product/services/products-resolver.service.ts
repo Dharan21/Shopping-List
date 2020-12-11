@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductApiService } from 'src/app/shared/services/product-api-call.service';
-import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.services';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsResolver implements Resolve<Product[]> {

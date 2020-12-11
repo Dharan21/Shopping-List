@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ProductMainComponent } from './product-main.component';
 import { ProductApiService } from 'src/app/shared/services/product-api-call.service';
-import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.services';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { Product } from 'src/app/shared/models/product.model';
 
 describe('ProductMainComponent', () => {
