@@ -6,7 +6,8 @@ describe('Shopping Cart Service', () => {
     let service: ShoppingCartService;
     beforeEach(() => {
         service = new ShoppingCartService();
-        service.products = [new Product('Test', 'TestImg', 10, 10, 1), new Product('Test2', 'TestImg2', 10, 1, 2)];
+        service.products = [new Product('Test', 'TestImg', 10, 10, 1),
+            new Product('Test2', 'TestImg2', 10, 1, 2)];
     });
 
     it('#getProducts should return product list', () => {
@@ -30,19 +31,19 @@ describe('Shopping Cart Service', () => {
             const product = service.getProductByName(service.products, 'Test');
             expect(product).toEqual(service.products[0]);
         });
-    
+
         it('#getProductByName should return null if product not found', () => {
             const product = service.getProductByName(service.products, 'Test3');
             expect(product).toBeNull();
         });
     });
-    
+
     describe('#getProductById', () => {
         it('#getProductById should return product with given id if found', () => {
             const product = service.getProductById(service.products, 1);
             expect(product).toEqual(service.products[0]);
         });
-    
+
         it('#getProductById should return null if product not found', () => {
             const product = service.getProductById(service.products, 3);
             expect(product).toBeNull();
@@ -57,22 +58,22 @@ describe('Shopping Cart Service', () => {
     describe('#addToCart', () => {
         it('#addToCart Should Add Products to cart', () => {
             service.addToCart(service.products[0]);
-            const cartItems = [{...service.products[0], quantity: 1}];
+            const cartItems = [{ ...service.products[0], quantity: 1 }];
             expect(JSON.stringify(service.cartItems)).toEqual(JSON.stringify(cartItems));
         });
-    
+
         it('#addToCart Should increase products quantity in cart if already found', () => {
             service.addToCart(service.products[0]);
             service.addToCart(service.products[0]);
-            const cartItems = [{...service.products[0], quantity: 2}];
+            const cartItems = [{ ...service.products[0], quantity: 2 }];
             expect(JSON.stringify(service.cartItems)).toEqual(JSON.stringify(cartItems));
         });
-    
+
         it('#addToCart Should reduce product quantity by 1 in products', () => {
             const updatedQuantity = service.products[0].quantity - 1;
             service.addToCart(service.products[0]);
             expect(service.products[0].quantity).toEqual(updatedQuantity);
         });
     });
-   
+
 });

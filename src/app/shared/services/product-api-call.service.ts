@@ -18,6 +18,7 @@ export class ProductApiService {
       .get<Product[]>('https://shopping-cart-f21f6.firebaseio.com/products.json')
       .pipe(
         tap(products => {
+          debugger
           this.scService.storeProducts(products);
         })
       );
