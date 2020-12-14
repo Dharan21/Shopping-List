@@ -18,9 +18,16 @@ export class ProductApiService {
       .get<Product[]>('https://shopping-cart-f21f6.firebaseio.com/products.json')
       .pipe(
         tap(products => {
-          debugger
           this.scService.storeProducts(products);
         })
       );
+  }
+
+  asyncMethodForUnitTesting(): Promise<boolean> {
+    return new Promise((resolve, reject) => { setTimeout(() => { resolve(true) }, 1500)})
+  }
+
+  getDummyData(): Promise<any> {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts').toPromise();
   }
 }

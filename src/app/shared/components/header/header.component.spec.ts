@@ -1,4 +1,6 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ProductApiService } from 'src/app/shared/services/product-api-call.service';
+import { TestBed, async, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 
@@ -9,6 +11,8 @@ describe('HeaderComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule],
+            providers: [ProductApiService],
             declarations: [HeaderComponent]
         });
         fixture = TestBed.createComponent(HeaderComponent);
@@ -34,5 +38,62 @@ describe('HeaderComponent', () => {
         expect(linksArray).toContain('Products');
         expect(linksArray).toContain('Cart');
     });
+
+    // for Assignment 5, Date: 12/14/2020
+    it('Auth Lable should be changed to \'Logout\' | jasmine.done', (done) => {
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('nav > div > div').textContent.trim()).toBe('Login');
+        let service = fixture.debugElement.injector.get(ProductApiService);
+        let spy = spyOn(service, 'asyncMethodForUnitTesting').and.returnValue(Promise.resolve(true));
+        app.ngOnInit();
+        spy.calls.mostRecent().returnValue.then(() => {
+            fixture.detectChanges();
+            compiled = fixture.debugElement.nativeElement;
+            expect(compiled.querySelector('nav > div > div').textContent.trim()).toBe('Logout');
+            done();
+        });
+    });
+
+    it('Auth Lable should be changed to \'Logout\' | async() and whenStable()', async(() => {
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('nav > div > div').textContent.trim()).toBe('Login');
+        let service = fixture.debugElement.injector.get(ProductApiService);
+        spyOn(service, 'asyncMethodForUnitTesting').and.returnValue(Promise.resolve(true));
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            compiled = fixture.debugElement.nativeElement;
+            expect(compiled.querySelector('nav > div > div').textContent.trim()).toBe('Logout');
+        });
+        app.ngOnInit();
+    }));
+
+    it('should get dummy data | jasmine.done', (done) => {
+        let service = fixture.debugElement.injector.get(ProductApiService);
+        let spy = spyOn(service, 'getDummyData').and.returnValue(Promise.resolve([{ id: 1 }]));
+        app.getDummyData();
+        spy.calls.mostRecent().returnValue.then(() => {
+            expect(app.dummyData).toEqual([{ id: 1 }]);
+            done();
+        });
+    })
+
+    it('should get dummy data | async() and whenStable()', async () => {
+        let service = fixture.debugElement.injector.get(ProductApiService);
+        spyOn(service, 'getDummyData').and.returnValue(Promise.resolve([{ id: 1 }]));
+        app.getDummyData();
+        fixture.whenStable().then(() => {
+            expect(app.dummyData).toEqual([{ id: 1 }]);
+        });
+    })
+
+    it('should get dummy data | fakeAsync() and tick()', fakeAsync(() => {
+        let service = fixture.debugElement.injector.get(ProductApiService);
+        spyOn(service, 'getDummyData').and.returnValue(Promise.resolve([{ id: 1 }]));
+        app.getDummyData();
+        tick();
+        expect(app.dummyData).toEqual([{ id: 1 }]);
+    }));
 
 });

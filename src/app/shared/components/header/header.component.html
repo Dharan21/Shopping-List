@@ -9,6 +9,7 @@
         <a class="nav-link" [routerLink]="item.routerLink" routerLinkActive="active">{{item.text}}</a>
       </li>
     </ul>
+    <div style="color: white;" (click)="isLoggedIn = !isLoggedIn">{{ !isLoggedIn ? 'Login' : 'Logout'}}</div>
   </div>
 </nav>
 <br>
