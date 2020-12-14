@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { Product } from '../models/product.model';
 
-// for Assignment 5, Date: 12/14/2020
+ // for Assignment 6, Date: 12/14/2020
 describe('ProductApiService', () => {
     let service: ProductApiService;
 
@@ -46,7 +46,7 @@ describe('ProductApiService', () => {
 
 });
 
-// for Assignment 5, Date: 12/14/2020
+ // for Assignment 6, Date: 12/14/2020
 describe('ProductApiService with Mock HTTP', () => {
     let service: ProductApiService;
     let httpClientSpy: { get: jasmine.Spy };

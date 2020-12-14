@@ -39,7 +39,7 @@ describe('HeaderComponent', () => {
         expect(linksArray).toContain('Cart');
     });
 
-    // for Assignment 5, Date: 12/14/2020
+    // for Assignment 6, Date: 12/14/2020
     it('Auth Lable should be changed to \'Logout\' | jasmine.done', (done) => {
         fixture.detectChanges();
         let compiled = fixture.debugElement.nativeElement;
