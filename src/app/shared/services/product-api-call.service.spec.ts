@@ -50,9 +50,6 @@ describe('ProductApiService', () => {
 describe('ProductApiService with Mock HTTP', () => {
     let service: ProductApiService;
     let httpClientSpy: { get: jasmine.Spy };
-    class MockScService {
-        storeProducts: () => ({})
-    }
 
     beforeEach(() => {
         httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
