@@ -8,4 +8,8 @@ export class AppPage {
   getTitleText(): Promise<string> {
     return element(by.css('app-root .content span')).getText() as Promise<string>;
   }
+
+  getProductMainElement(): Promise<string> {
+    return element(by.tagName('app-product-main')).getText() as Promise<string>;
+  }
 }
