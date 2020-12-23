@@ -7,10 +7,7 @@ import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   {
-    path: '', component: CartMainComponent,
-    children: [
-      { path: '', component: CartInvoiceComponent }
-    ]
+    path: '', component: CartMainComponent
   }
 ];
 

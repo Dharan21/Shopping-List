@@ -29,4 +29,8 @@ export class ProductsPage {
     getAddToCartButton(): ElementFinder {
         return element.all(by.css('.card .card-body button')).first();
     }
+
+    async gotoCart() {
+        await element.all(by.css('nav ul li a')).last().click();
+    }
 }
